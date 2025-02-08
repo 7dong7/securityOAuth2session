@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.2'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.myOAuth'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // 뷰 템플릿 무스타치
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    // OAuth2
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // 웹 구동
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 롭복
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // 데이터 베이스
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // jdbc
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
